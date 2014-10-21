@@ -1,13 +1,20 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'thin'
 
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+end
+
+group :test, :development do
+  gem 'sqlite3'
+end
 
 group :development do
-  gem 'sqlite3'
   gem 'sinatra-reloader'
 end
 
