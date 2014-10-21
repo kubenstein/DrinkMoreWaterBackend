@@ -8,15 +8,16 @@ gem 'thin'
 
 group :test do
   gem 'rspec'
+  gem 'rspec-collection_matchers'
   gem 'rack-test'
 end
 
 group :test, :development do
+  gem 'sinatra-reloader'
   gem 'sqlite3'
 end
 
 group :development do
-  gem 'sinatra-reloader'
 end
 
 group :production do
