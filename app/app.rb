@@ -1,18 +1,26 @@
+namespace '/v1' do
+  namespace '/donations' do
 
-get '/' do
-	erb :index
+    get '/?' do
+      @models = use_workflow(Donation.all)
+      {donations: @models.map(&:to_hash)}.to_json
+    end
+
+    get '/new' do
+      erb :new
+    end
+
+    post '/?' do
+      @model = Donation.new(params[:model])
+      if @model.save
+        redirect '/v1/donations'
+      end
+    end
+
+  end
 end
 
-post '/submit' do
-	@model = Donation.new(params[:model])
-	if @model.save
-		redirect '/models'
-	else
-		"Sorry, there was an error!"
-	end
-end
 
-get '/models' do
-	@models = Donation.all
-	erb :models
+def use_workflow(workflow)
+  workflow
 end

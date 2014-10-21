@@ -7,6 +7,8 @@ configure :development do |c|
   c.also_reload './models/*.rb'
 end
 
+require 'json'
+require 'sinatra/namespace'
 require './config/db'
 require './app/models/donation'
 require './app/app'
