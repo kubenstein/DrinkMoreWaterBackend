@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.0'
 
 gem 'sinatra'
+gem 'sinatra-contrib'
 gem 'sequel'
 gem 'thin'
 
@@ -13,7 +14,6 @@ group :test do
 end
 
 group :test, :development do
-  gem 'sinatra-reloader'
   gem 'sqlite3'
 end
 
