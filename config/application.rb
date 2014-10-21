@@ -8,5 +8,5 @@ configure :development do |c|
 end
 
 require './config/db'
-require './app/models/model'
+require './app/models/donation'
 require './app/app'

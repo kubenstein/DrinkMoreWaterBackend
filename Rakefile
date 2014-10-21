@@ -1,2 +1,2 @@
 require './config/environment'
-require 'sinatra/activerecord/rake'
+require './tasks/sequel_db_tasks'

@@ -1,23 +1,14 @@
 development:
-  adapter: sqlite3
+  adapter: sqlite
   database: db/development.sqlite3
   pool: 5
   timeout: 5000
 
 test:
-  adapter: sqlite3
+  adapter: sqlite
   database: db/test.sqlite3
   pool: 5
   timeout: 5000
 
-
-
-# heroku production
 production:
-  <% db = URI.parse(ENV['DATABASE_URL'] || 'dummy://dummy/dummy') %>
-  adapter: <%= db.scheme == 'postgres' ? 'postgresql' : db.scheme %>,
-  host: <%= db.host %>
-  username: <%= db.user %>
-  password: <%= db.password %>
-  database: <%= db.path[1..-1] %>
-  encoding: <%= 'utf8' %>
+  adapter: THIS_FILE_WILL_BE_OVERWRITTEN_BY_HEROKU_ANYWAY

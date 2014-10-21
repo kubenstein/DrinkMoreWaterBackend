@@ -4,7 +4,7 @@ get '/' do
 end
 
 post '/submit' do
-	@model = Model.new(params[:model])
+	@model = Donation.new(params[:model])
 	if @model.save
 		redirect '/models'
 	else
@@ -13,6 +13,6 @@ post '/submit' do
 end
 
 get '/models' do
-	@models = Model.all
+	@models = Donation.all
 	erb :models
 end
