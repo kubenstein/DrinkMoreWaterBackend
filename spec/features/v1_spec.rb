@@ -5,8 +5,8 @@ describe 'api v1' do
   let(:fake_workflow) do
     -> {
       [
-          {name: 'name1', timestamp: 1412897146},
-          {name: 'name2', timestamp: 1413897146},
+          OpenStruct.new(name: 'name1', created_at: 1412897146, forbitten_field: 'DONT_SHOW_ME'),
+          OpenStruct.new(name: 'name2', created_at: 1413897146, id: 1)
       ]
     }
   end

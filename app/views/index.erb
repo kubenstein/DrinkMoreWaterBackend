@@ -1,4 +1,8 @@
-<%= {
-        donations: @donations.map(&:to_hash)
+<%=
+    {
+        donations: @donations.map { |d|
+            {name: d.name, timestamp: d.created_at.to_i}
+        }
     }.to_json
+
 %>

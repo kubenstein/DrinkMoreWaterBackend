@@ -1,6 +1,3 @@
-class Donation
-
-
-  # persistence
-  def self.all; DB[:donations] end
+class Donation < Struct.new(:name, :created_at)
+  extend ::Persistence
 end
