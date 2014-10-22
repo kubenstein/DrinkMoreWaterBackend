@@ -2,8 +2,8 @@ namespace '/v1' do
   namespace '/donations' do
 
     get '/?' do
-      @models = use_workflow(Donation.all)
-      {donations: @models.map(&:to_hash)}.to_json
+      @donations = use_workflow(DonationListingWorkflow).call
+      erb :index
     end
 
     get '/new' do
@@ -22,5 +22,5 @@ end
 
 
 def use_workflow(workflow)
-  workflow
+  workflow.new
 end
