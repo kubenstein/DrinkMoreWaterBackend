@@ -3,8 +3,8 @@ require 'erb'
 require 'logger'
 
 db_params = YAML.load(
-    ERB.new(File.read("#{settings.app_root}/config/database.yml")).result
-)[settings.environment.to_s]
+    ERB.new(File.read("#{APP_ROOT}/config/database.yml")).result
+)[APP_ENV]
 
 
 ##### URI TO DB #####

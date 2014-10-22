@@ -1,8 +1,9 @@
 require 'bundler'
+
 ENV['RACK_ENV'] ||= 'development'
-Bundler.require(:default, ENV['RACK_ENV'].to_sym)
 
-APP_ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+APP_ROOT = Bundler.root
+APP_ENV = ENV['RACK_ENV']
 
-require 'sinatra'
+Bundler.require(:default, ENV['RACK_ENV'])
 require './config/application'
