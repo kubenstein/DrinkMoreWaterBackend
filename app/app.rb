@@ -2,8 +2,8 @@ namespace '/v1' do
   namespace '/donations' do
 
     get '/?' do
-      @donations = use_workflow(DonationListingWorkflow).call
-      erb :index
+      donations = use_workflow(DonationListingWorkflow).call
+      erb :index, locals: {donations: donations}
     end
 
     get '/new' do
@@ -11,10 +11,9 @@ namespace '/v1' do
     end
 
     post '/?' do
-      @model = Donation.new(params[:model])
-      if @model.save
-        redirect '/v1/donations'
-      end
+      workflow = use_workflow(CreateDonationWorkflow)
+      result = workflow.call(params)
+      erb :create, locals: {success: result, donation: workflow.model}
     end
 
   end

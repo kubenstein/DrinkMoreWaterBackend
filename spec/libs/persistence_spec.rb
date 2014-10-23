@@ -33,4 +33,7 @@ describe Persistence do
     expect(results[1]).to eq(PERSISTABLE.new('2attribute1_value', '2attribute2_value'))
   end
 
+  xit 'under "save" method, commands db to save object' do
+  end
+
 end
