@@ -1,6 +1,8 @@
 class CreateDonationWorkflow
   attr_reader :model, :model_class
 
+  PERMITTED_FIELDS = [:name]
+
   def call(donation_params, model_class=Donation)
     @model_class = model_class
     @model = create_model(donation_params)
@@ -15,17 +17,12 @@ class CreateDonationWorkflow
 
   private
 
-  def permitted_params_values(params)
-    params ||= {}
-    ordered_permitted_values = []
-    permitted_keys = model_class.members
-
-    permitted_keys.each { |permitted_key| ordered_permitted_values << params[permitted_key.to_s] }
-    ordered_permitted_values.compact
+  def keep_permitted_params(params)
+    (params || {}).keep_if { |k, _| PERMITTED_FIELDS.include?(k.to_sym) }
   end
 
   def create_model(params)
-    model_class.new(*permitted_params_values(params))
+    model_class.new(keep_permitted_params(params))
   end
 
   def valid?

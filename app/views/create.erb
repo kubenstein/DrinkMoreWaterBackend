@@ -3,7 +3,7 @@
         status: success ? 'success' : 'error',
         donation: {
             name: donation.name,
-            timestamp: donation.created_at.to_i
+            timestamp: donation.created_at.to_time.to_i
         }
     }.to_json
     
