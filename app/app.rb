@@ -21,6 +21,11 @@ namespace '/v1' do
   end
 end
 
+not_found do
+  status 404
+  erb :page_404
+end
+
 
 def use_workflow(workflow)
   workflow.new
