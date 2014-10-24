@@ -8,7 +8,7 @@ describe CreateDonationWorkflow do
 
   it 'saves model with given params' do
     expect(Donation).to receive(:new).with(good_params).and_return(donation)
-    expect(donation).to receive(:save)
+    expect(donation).to receive(:create)
     subject.call(good_params)
   end
 

@@ -8,8 +8,8 @@ module Persistence
 
 
   module InstanceMethods
-    def save
-      true
+    def create
+      DB["#{self.class.name.downcase}s".to_sym].insert(self.to_h)
     end
   end
 

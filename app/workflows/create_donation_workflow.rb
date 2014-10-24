@@ -4,7 +4,7 @@ class CreateDonationWorkflow
   def call(donation_params)
     params = permitted_params(donation_params, Donation.members)
     @model = Donation.new(params)
-    @model.save
+    @model.create
   end
 
 

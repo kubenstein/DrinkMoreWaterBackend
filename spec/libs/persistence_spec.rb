@@ -5,7 +5,7 @@ describe Persistence do
     extend Persistence
   end
 
-  let(:fake_db) { [] }
+  let(:fake_db) { double }
   let(:empty_class) { Class.new }
   let(:persistable_class) { PERSISTABLE }
 
@@ -16,6 +16,10 @@ describe Persistence do
     expect(empty_class).to respond_to(:all)
   end
 
+  it 'class responds to "all" method' do
+    expect(persistable_class).to respond_to :all
+  end
+
   it 'under "all" method, asks db to get all donations using model schema' do
     fake_persistences_list = [
         {attribute1: '1attribute1_value', attribute2: '1attribute2_value'},
@@ -23,17 +27,28 @@ describe Persistence do
     ]
 
     ::DB = fake_db
-    dataset = double
-    expect(DB).to receive(:[]).with(:persistables).and_return(dataset)
-    expect(dataset).to receive(:select).with(:attribute1, :attribute2).and_return(fake_persistences_list)
+    db_entity = double
+    expect(DB).to receive(:[]).with(:persistables).and_return(db_entity)
+    expect(db_entity).to receive(:select).with(:attribute1, :attribute2).and_return(fake_persistences_list)
     results = persistable_class.all
-    expect(results).to have(2).items
 
-    expect(results[0]).to eq(PERSISTABLE.new('1attribute1_value', '1attribute2_value'))
-    expect(results[1]).to eq(PERSISTABLE.new('2attribute1_value', '2attribute2_value'))
+    expect(results).to have(2).items
+    expect(results[0]).to eq(persistable_class.new('1attribute1_value', '1attribute2_value'))
+    expect(results[1]).to eq(persistable_class.new('2attribute1_value', '2attribute2_value'))
   end
 
-  xit 'under "save" method, commands db to save object' do
+  it 'object responds to "create" method' do
+    expect(persistable_class.new).to respond_to :create
+  end
+
+  it 'under "create" method, commands db to save object' do
+    persistable_object = persistable_class.new('attribute2_value', 'attribute1_value')
+
+    ::DB = fake_db
+    db_entity = double
+    expect(DB).to receive(:[]).with(:persistables).and_return(db_entity)
+    expect(db_entity).to receive(:insert).with({attribute1: 'attribute2_value', attribute2: 'attribute1_value'})
+    persistable_object.create
   end
 
 end
