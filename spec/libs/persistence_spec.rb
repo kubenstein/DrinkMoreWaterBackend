@@ -9,6 +9,8 @@ describe Persistence do
   let(:empty_class) { Class.new }
   let(:persistable_class) { PERSISTABLE }
 
+  before { ::DB ||= fake_db }
+
 
   it 'should provide "all" method to extended class' do
     expect(empty_class).not_to respond_to(:all)
@@ -26,7 +28,6 @@ describe Persistence do
         {attribute1: '2attribute1_value', attribute2: '2attribute2_value'}
     ]
 
-    ::DB = fake_db
     db_entity = double
     expect(DB).to receive(:[]).with(:persistables).and_return(db_entity)
     expect(db_entity).to receive(:select).with(:attribute1, :attribute2).and_return(fake_persistences_list)
@@ -44,7 +45,6 @@ describe Persistence do
   it 'under "create" method, commands db to save object' do
     persistable_object = persistable_class.new('attribute2_value', 'attribute1_value')
 
-    ::DB = fake_db
     db_entity = double
     expect(DB).to receive(:[]).with(:persistables).and_return(db_entity)
     expect(db_entity).to receive(:insert).with({attribute1: 'attribute2_value', attribute2: 'attribute1_value'})
