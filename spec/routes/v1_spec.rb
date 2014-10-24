@@ -40,7 +40,7 @@ describe 'api v1' do
   it 'uses proper workflow when creating donation' do
     stub_erb!
     params = {'donation' => {'name' => 'name'}}
-    expect_workflow(CreateDonationWorkflow).to receive(:call).with(params).and_return(fake_creating_workflow.call(params))
+    expect_workflow(CreateDonationWorkflow).to receive(:call).with(params['donation']).and_return(fake_creating_workflow.call(params['donation']))
     post '/v1/donations', donation: {name: 'name'}
   end
 

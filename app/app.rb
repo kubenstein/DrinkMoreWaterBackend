@@ -12,7 +12,7 @@ namespace '/v1' do
 
     post '/?' do
       workflow = use_workflow(CreateDonationWorkflow)
-      result = workflow.call(params)
+      result = workflow.call(params['donation'])
       erb :create, locals: {success: result, donation: workflow.model}
     end
 
