@@ -5,8 +5,10 @@ describe 'api v1' do
 
   let(:donation) { instance_double(Donation, name: 'new_donation_name', created_at: 1413897146).as_null_object }
   let(:donation2) { instance_double(Donation, name: 'new_donation_name2', created_at: 1416897146).as_null_object }
+  let(:invalid_donation) { instance_double(Donation, name: '', created_at: 1416897146).as_null_object }
   let(:fake_listing_workflow) { instance_double(DonationListingWorkflow, call: [donation, donation2]).as_null_object }
   let(:fake_create_workflow) { instance_double(CreateDonationWorkflow, model: donation).as_null_object }
+  let(:fake_failing_create_workflow) { instance_double(CreateDonationWorkflow, model: invalid_donation, call: false).as_null_object }
 
 
   it 'lists all donations' do
@@ -46,6 +48,17 @@ describe 'api v1' do
 
     expect(json['status']).to eq 'success'
     expect(json['donation']).to eq({'name' => 'new_donation_name', 'timestamp' => 1413897146})
+  end
+
+  it 'returns proper json after donation create fail' do
+    stub_workflow_with!(fake_failing_create_workflow)
+    post '/v1/donations'
+
+    expect(last_response.status).to eq 422
+    json = JSON.parse(last_response.body)
+
+    expect(json['status']).to eq 'error'
+    expect(json['donation']).to eq({'name' => '', 'timestamp' => 1416897146})
   end
 
 end
