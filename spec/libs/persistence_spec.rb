@@ -5,11 +5,8 @@ describe Persistence do
     extend Persistence
   end
 
-  let(:fake_db) { double }
   let(:empty_class) { Class.new }
   let(:persistable_class) { PERSISTABLE }
-
-  before { ::DB ||= fake_db }
 
 
   it 'should provide "all" method to extended class' do
