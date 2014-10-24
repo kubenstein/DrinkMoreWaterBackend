@@ -1,3 +1,3 @@
 class Donation < Struct.new(:name, :created_at)
-  extend ::Persistence
+  extend Persistence
 end
