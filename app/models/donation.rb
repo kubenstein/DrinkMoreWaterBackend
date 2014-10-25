@@ -1,5 +1,5 @@
 class Donation
-  extend Persistence
+  include Persistence
   include Virtus.model
 
   attribute :name, String

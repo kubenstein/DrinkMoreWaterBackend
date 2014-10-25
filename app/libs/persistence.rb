@@ -14,7 +14,7 @@ module Persistence
   end
 
 
-  def self.extended(base)
+  def self.included(base)
     base.extend ClassMethods
     base.include InstanceMethods
   end

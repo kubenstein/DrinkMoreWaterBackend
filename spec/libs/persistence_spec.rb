@@ -6,9 +6,9 @@ describe Persistence do
   let(:persistable_class) { DummyPersistable }
 
 
-  it 'should provide "all" method to extended class' do
+  it 'should provide "all" method to included class' do
     expect(empty_class).not_to respond_to(:all)
-    empty_class.extend Persistence
+    empty_class.include Persistence
     expect(empty_class).to respond_to(:all)
   end
 
@@ -47,5 +47,5 @@ end
 
 
 class DummyPersistable < OpenStruct
-  extend Persistence
+  include Persistence
 end
