@@ -1,9 +1,8 @@
-class Donation < Struct.new(:name, :created_at)
-  extend StructHashInitialize
+class Donation
   extend Persistence
+  include Virtus.model
 
-  def create
-    self.created_at = DateTime.now
-    super
-  end
+  attribute :name, String
+  attribute :created_at, DateTime, default: Proc.new { DateTime.now }
+
 end
