@@ -15,6 +15,7 @@ GEM
     equalizer (0.0.9)
     eventmachine (1.0.3)
     ice_nine (0.11.0)
+    just_include (1.0.0)
     pg (0.14.1)
     rack (1.4.1)
     rack-protection (1.2.0)
@@ -65,6 +66,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  just_include
   pg
   rack-test
   require_all

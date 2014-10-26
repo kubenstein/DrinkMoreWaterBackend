@@ -8,6 +8,7 @@ gem 'sequel'
 gem 'virtus'
 gem 'thin'
 gem 'require_all'
+gem 'just_include'
 
 group :test do
   gem 'rspec'
