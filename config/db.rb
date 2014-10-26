@@ -1,6 +1,7 @@
 require 'yaml'
 require 'erb'
 require 'logger'
+require 'sequel'
 
 db_params = YAML.load(
     ERB.new(File.read("#{APP_ROOT}/config/database.yml")).result

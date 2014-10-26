@@ -9,13 +9,13 @@ describe CreateDonationWorkflow do
 
   it 'saves model with given params' do
     expect(Donation).to receive(:new).with(good_params).and_return(donation)
-    expect(donation).to receive(:create)
+    expect(donation).to receive(:save)
     subject.call(good_params)
   end
 
   it 'doesnt save model without name' do
     allow(Donation).to receive(:new).and_return(invalid_dotation)
-    expect(donation).not_to receive(:create)
+    expect(donation).not_to receive(:save)
     subject.call({dummy: :dummy})
   end
 

@@ -5,10 +5,8 @@ development:
   timeout: 5000
 
 test:
-  adapter: sqlite
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mock
+  database: mock
 
 production:
   adapter: THIS_FILE_WILL_BE_OVERWRITTEN_BY_HEROKU_ANYWAY

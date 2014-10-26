@@ -1,5 +1,4 @@
 require_relative '../spec_helper'
-require_rel '../support/*'
 
 describe Donation do
   subject { Donation }
@@ -11,10 +10,8 @@ describe Donation do
     expect(donation.created_at).to eq 'created_at'
   end
 
-  it 'fill created_at after create' do
-    stub_db!
+  it 'fill created_at by default' do
     donation = subject.new
-    donation.create
     expect(donation.created_at).not_to be_nil
   end
 

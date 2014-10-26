@@ -2,12 +2,17 @@ module Persistence
   include JustInclude
   just_include do
 
-    def self.all
-      DB["#{self.name.downcase}s".to_sym].map { |data| self.new(data) }
+    def self.persistence_layer
+      @persistence_layer ||= Sequel::Model("#{self.name.downcase}s".to_sym)
     end
 
-    def create
-      DB["#{self.class.name.downcase}s".to_sym].insert(self.to_h)
+
+    def self.all
+      self.persistence_layer.all
+    end
+
+    def save
+      self.class.persistence_layer.new(self.attributes).save
     end
 
   end

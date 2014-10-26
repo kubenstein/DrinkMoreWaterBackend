@@ -4,7 +4,7 @@ ruby '2.1.0'
 
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'sequel'
+gem 'sequel', require: false
 gem 'virtus'
 gem 'thin'
 gem 'require_all'

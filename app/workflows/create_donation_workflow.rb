@@ -8,7 +8,7 @@ class CreateDonationWorkflow
     @model = create_model(donation_params)
 
     if valid?
-      @model.create
+      @model.save
     else
       false
     end
