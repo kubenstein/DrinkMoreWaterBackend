@@ -18,7 +18,7 @@ class CreateDonationWorkflow
   private
 
   def keep_permitted_params(params)
-    (params || {}).keep_if { |k, _| PERMITTED_FIELDS.include?(k.to_sym) }
+    (params || {}).select { |k, _| PERMITTED_FIELDS.include?(k.to_sym) }
   end
 
   def create_model(params)
