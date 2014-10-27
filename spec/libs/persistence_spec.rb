@@ -5,6 +5,10 @@ describe Persistence do
   let(:empty_class) { EmptyClass }
   let(:persistable_class) { DummyPersistable }
 
+  before do
+    allow(persistable_class).to receive(:persistence_layer).and_return(double)
+  end
+
   it 'should provide "all" method to included class' do
     expect(empty_class).not_to respond_to(:all)
     empty_class.include Persistence
