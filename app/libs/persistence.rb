@@ -11,6 +11,10 @@ module Persistence
       self.persistence_layer.all
     end
 
+    def self.reverse_order(column)
+      self.persistence_layer.reverse_order(column)
+    end
+
     def save
       self.class.persistence_layer.new(self.attributes).save
     end

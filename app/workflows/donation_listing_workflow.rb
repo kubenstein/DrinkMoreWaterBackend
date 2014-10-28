@@ -1,7 +1,7 @@
 class DonationListingWorkflow
 
   def call
-    Donation.all
+    Donation.reverse_order(:id)
   end
 
 end
