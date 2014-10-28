@@ -6,17 +6,12 @@ module Persistence
       @persistence_layer ||= Sequel::Model("#{self.name.downcase}s".to_sym)
     end
 
-
-    def self.all
-      self.persistence_layer.all
-    end
-
-    def self.reverse_order(column)
-      self.persistence_layer.reverse_order(column)
-    end
-
     def save
       self.class.persistence_layer.new(self.attributes).save
+    end
+
+    def self.method_missing(method, *args)
+      self.persistence_layer.send method, *args
     end
 
   end

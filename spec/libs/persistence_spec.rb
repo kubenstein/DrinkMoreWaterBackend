@@ -6,17 +6,17 @@ describe Persistence do
   let(:persistable_class) { DummyPersistable }
 
   before do
-    allow(persistable_class).to receive(:persistence_layer).and_return(double)
+    allow(persistable_class).to receive(:persistence_layer).and_return(double.as_null_object)
   end
 
   it 'should provide "all" method to included class' do
-    expect(empty_class).not_to respond_to(:all)
+    expect { empty_class.all }.to raise_exception
     empty_class.include Persistence
-    expect(empty_class).to respond_to(:all)
+    expect { empty_class.all }.not_to raise_exception
   end
 
-  it 'class responds to "all" method' do
-    expect(persistable_class).to respond_to :all
+  it 'class forwards methods to persistence_layer' do
+    expect { persistable_class.all }.not_to raise_exception
   end
 
   it 'under "all" method, asks db to get all donations' do
