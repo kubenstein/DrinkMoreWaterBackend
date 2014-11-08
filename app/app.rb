@@ -6,10 +6,6 @@ namespace '/v1' do
       erb :index, locals: {donations: donations}
     end
 
-    get '/new' do
-      erb :new
-    end
-
     post '/?' do
       workflow = use_workflow(CreateDonationWorkflow)
       result = workflow.call(params['donation'])
