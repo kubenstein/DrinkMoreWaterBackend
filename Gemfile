@@ -10,6 +10,7 @@ gem 'thin'
 gem 'require_all'
 gem 'just_include'
 gem 'newrelic_rpm'
+gem 'dynopoker'
 
 group :test do
   gem 'rspec'
