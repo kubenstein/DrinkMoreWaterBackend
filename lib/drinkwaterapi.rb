@@ -35,15 +35,7 @@ Hanami::Model.configure do
   #
   # Alternatively, you can use a block syntax like the following:
   #
-  mapping do
-    # collection :users do
-    #   entity     User
-    #   repository UserRepository
-    #
-    #   attribute :id,   Integer
-    #   attribute :name, String
-    # end
-  end
+  mapping "#{__dir__}/config/mapping"
 end.load!
 
 Hanami::Mailer.configure do
