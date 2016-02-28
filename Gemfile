@@ -10,6 +10,8 @@ gem 'rake'
 gem 'pg'
 
 group :test do
+  gem 'minitest'
+  gem 'capybara'
 end
 
 group :production do

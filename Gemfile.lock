@@ -1,6 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    capybara (2.5.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     dotenv (2.1.0)
     hanami (0.7.2)
       bundler (~> 1.6)
@@ -46,8 +52,14 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.99.1)
+    mini_portile2 (2.0.0)
+    minitest (5.8.3)
+    nokogiri (1.6.7.1)
+      mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
     rack (1.6.4)
+    rack-test (0.6.3)
+      rack (>= 1.0)
     rake (10.5.0)
     sequel (4.31.0)
     shotgun (0.9.1)
@@ -56,15 +68,19 @@ GEM
     tilt (2.0.2)
     url_mount (0.2.1)
       rack
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  capybara
   hanami (= 0.7.2)
   hanami-model (~> 0.5)
+  minitest
   pg
   rake
 
 BUNDLED WITH
-   1.10.3
+   1.11.2
