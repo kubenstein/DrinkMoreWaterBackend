@@ -3,7 +3,7 @@ require_relative '../../../../apps/web/views/donations/create'
 
 describe Web::Views::Donations::Create do
   let(:exposures) { Hash[foo: 'bar'] }
-  let(:template)  { Hanami::View::Template.new('apps/web/templates/donations/create.html.erb') }
+  let(:template)  { Hanami::View::Template.new('apps/web/templates/donations/create.json.erb') }
   let(:view)      { Web::Views::Donations::Create.new(template, exposures) }
   let(:rendered)  { view.render }
 
