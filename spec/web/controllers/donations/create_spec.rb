@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Web::Controllers::Donations::Create do
-  let(:action) { Web::Controllers::Donations::Create.new }
+  let(:action) { subject }
+
   before do
     DonationRepository.clear
   end
@@ -9,17 +10,17 @@ describe Web::Controllers::Donations::Create do
   it 'creates donation' do
     response = action.call({donation: {name: 'donation_name'}})
 
-    response[0].must_equal 200
-    assert_equal action.exposures[:format], :json
-    assert_equal action.exposures[:donation].name, 'donation_name'
-    assert_kind_of Fixnum, action.exposures[:donation].id
+    expect(response[0]).to eq 200
+    expect(action.exposures[:format]).to eq :json
+    expect(action.exposures[:donation].name).to eq 'donation_name'
+    expect(action.exposures[:donation].id).to be_kind_of Fixnum
   end
 
   it 'doesnt create invalid donation' do
     response = action.call({donation: {name: ''}})
 
-    response[0].must_equal 200
-    assert_equal action.exposures[:format], :json
-    assert_kind_of NilClass, action.exposures[:donation].id
+    expect(response[0]).to eq 200
+    expect(action.exposures[:format]).to eq :json
+    expect(action.exposures[:donation].id).to be_kind_of NilClass
   end
 end

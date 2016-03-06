@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Web::Controllers::Donations::Index do
-  let(:action) { Web::Controllers::Donations::Index.new }
+  let(:action) { subject }
 
   before do
     DonationRepository.clear
@@ -12,8 +12,8 @@ describe Web::Controllers::Donations::Index do
   it 'lists all donations' do
     response = action.call({})
 
-    response[0].must_equal 200
-    assert_equal action.exposures[:format], :json
-    assert_equal action.exposures[:donations], [@donation1, @donation2]
+    expect(response[0]).to eq 200
+    expect(action.exposures[:format]).to eq :json
+    expect(action.exposures[:donations]).to eq [@donation1, @donation2]
   end
 end

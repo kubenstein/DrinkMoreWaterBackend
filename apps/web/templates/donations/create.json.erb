@@ -1,6 +1,6 @@
 <%=
     {
-        status: donation.id.nil? ? 'error' : 'success' ,
+        status: donation.id.nil? ? 'error' : 'success',
         donation: {
             name: donation.name,
             timestamp: donation.id.nil? ? 0 : donation.created_at.to_time.to_i
