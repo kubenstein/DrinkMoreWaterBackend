@@ -19,7 +19,7 @@ describe Web::Controllers::Donations::Create do
   it 'doesnt create invalid donation' do
     response = action.call({donation: {name: ''}})
 
-    expect(response[0]).to eq 200
+    expect(response[0]).to eq 422
     expect(action.exposures[:format]).to eq :json
     expect(action.exposures[:donation].id).to be_kind_of NilClass
   end

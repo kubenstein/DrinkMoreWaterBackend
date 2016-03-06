@@ -9,14 +9,16 @@ module Web::Controllers::Donations
         param :name, presence: true
       end
     end
+
     def call(params)
-      @donation = if params.valid?
-                    DonationRepository.create(
-                        Donation.new(params[:donation])
-                    )
-                  else
-                    Donation.new(params[:donation])
-                  end
+      if params.valid?
+        @donation = DonationRepository.create(
+            Donation.new(params[:donation])
+        )
+      else
+        self.status = 422
+        @donation = Donation.new(params[:donation])
+      end
     end
   end
 end
