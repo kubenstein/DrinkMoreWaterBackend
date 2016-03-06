@@ -7,11 +7,14 @@ gem 'hanami-model', '~> 0.5'
 
 gem 'rake'
 
-gem 'pg'
+group :development do
+  gem 'sqlite3'
+end
 
 group :test do
   gem 'rspec'
 end
 
 group :production do
+  gem 'pg'
 end
