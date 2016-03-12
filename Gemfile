@@ -4,6 +4,7 @@ ruby '2.2.3'
 
 gem 'hanami',       '0.7.2'
 gem 'hanami-model', '~> 0.5'
+gem 'newrelic-hanami'
 gem 'thin'
 gem 'rake'
 
