@@ -14,6 +14,6 @@ describe Web::Controllers::Donations::Index do
 
     expect(response[0]).to eq 200
     expect(action.exposures[:format]).to eq :json
-    expect(action.exposures[:donations]).to eq [@donation1, @donation2]
+    expect(action.exposures[:donations].all).to eq [@donation2, @donation1]
   end
 end

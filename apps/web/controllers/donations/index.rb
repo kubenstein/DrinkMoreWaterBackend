@@ -5,7 +5,7 @@ module Web::Controllers::Donations
     expose :donations
 
     def call(params)
-      @donations = DonationRepository.all
+      @donations = DonationRepository.all.reverse_order(:created_at)
     end
   end
 end
